@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrés Barbershop — Barbería en Moravia, San José</title>
+<meta name="description" content="Andrés Barbershop: barbería en Moravia, San José. Cortes, barba y diseño hechos a mano por Andrés. Reservá tu cita hoy.">
+<meta name="theme-color" content="#15100C">
+
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="Andrés Barbershop — Moravia, San José">
+<meta property="og:description" content="Barbería en Moravia. Cortes, barba y diseño hechos a mano por Andrés.">
+<meta property="og:locale" content="es_CR">
+<meta property="og:image" content="https://raw.githubusercontent.com/tobikadachi937/andres-barbershop/refs/heads/main/andres-logo.png">
+
+<!-- Canonical: intentionally left out — no confirmed production domain yet.
+     Once deployed, add:
+     <link rel="canonical" href="https://REPLACE-WITH-FINAL-DOMAIN/"> -->
+
+<meta name="robots" content="index, follow">
+<link rel="icon" href="https://raw.githubusercontent.com/tobikadachi937/andres-barbershop/refs/heads/main/andres-logo-sm.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="tex-brick">
+
+<a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+<!-- ============ HEADER / NAV ============
+     Reference: a thin bordered bar floating over the brick background,
+     compact two-line wordmark at the left, nav center-right, a solid CTA
+     button at the far right. -->
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a href="#top" class="brand" aria-label="Andrés Barbershop — inicio">
+      <img class="brand-logo" src="https://raw.githubusercontent.com/tobikadachi937/andres-barbershop/refs/heads/main/andres-logo-sm.png" alt="Andrés Barbershop" width="360" height="240">
+    </a>
+
+    <nav class="primary-nav" aria-label="Navegación principal">
+      <ul>
+        <li><a href="#top">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#barbero">Barbero</a></li>
+        <li><a href="#trabajos">Trabajos</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn btn-primary" href="#reserva" id="header-cta"><span>Reservar cita</span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile full-screen nav -->
+<div class="mobile-nav" id="mobile-nav">
+  <div class="mobile-nav-head">
+    <a href="#top" class="brand" aria-label="Andrés Barbershop — inicio">
+      <img class="brand-logo" src="https://raw.githubusercontent.com/tobikadachi937/andres-barbershop/refs/heads/main/andres-logo-sm.png" alt="Andrés Barbershop" width="360" height="240">
+    </a>
+    <button class="menu-close" id="menu-close" aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav aria-label="Navegación móvil">
+    <ol class="mobile-nav-list">
+      <li><span class="mono idx">01</span><a href="#top">Inicio</a></li>
+      <li><span class="mono idx">02</span><a href="#servicios">Servicios</a></li>
+      <li><span class="mono idx">03</span><a href="#barbero">Barbero</a></li>
+      <li><span class="mono idx">04</span><a href="#trabajos">Trabajos</a></li>
+      <li><span class="mono idx">05</span><a href="#ubicacion">Ubicación</a></li>
+      <li><span class="mono idx">06</span><a href="#contacto">Contacto</a></li>
+    </ol>
+  </nav>
+  <div class="mobile-nav-foot">
+    <a class="btn btn-primary btn-block" href="#reserva" id="mobile-nav-cta">Reservar cita</a>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============ 01 — HERO ============
+       Reference: full-bleed brick-wall photo, a huge wordmark overlapping
+       a centered photographic barber portrait, floating tool props at low
+       opacity in the corners, a short supporting line below.
+       Here: the same layered construction, but the "huge wordmark" role
+       is filled by the actual approved logo (per explicit instruction —
+       no recreated type), layered over a real barber-chair/brick photo
+       instead of a portrait, since no photo of Andrés exists yet. -->
+  <section class="beat hero" id="top" aria-label="Introducción">
+    <div class="hero-bg" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" width="1600" height="1067" fetchpriority="high" decoding="async">
+    </div>
+
+    <div class="hero-props" aria-hidden="true">
+      <svg class="prop prop-scissors" viewBox="0 0 60 60"><path d="M12,48 c-4,-4 -10,-1 -8,4 c2,4 7,2 6,-2 M12,48 L50,14 M10,14 c-4,-4 -10,-1 -8,4 c2,4 7,2 6,-2 M10,14 L48,48" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+      <svg class="prop prop-brush" viewBox="0 0 40 60"><path d="M20,58 L20,30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M8,30 Q20,10 32,30 Z" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>
+    </div>
+
+    <div class="hero-content">
+      <img class="hero-logo reveal" src="https://raw.githubusercontent.com/tobikadachi937/andres-barbershop/refs/heads/main/andres-logo.png" alt="Andrés Barbershop" width="1200" height="800">
+      <p class="hero-kicker mono reveal"><span class="dot" aria-hidden="true"></span>Moravia · San José · Costa Rica</p>
+      <h1 class="visually-hidden">Andrés Barbershop — Moravia, San José, Costa Rica</h1>
+      <p class="hero-tagline reveal">Tu estilo. Tu corte. Tu barbería.</p>
+      <div class="hero-actions reveal">
+        <a class="btn btn-primary btn-lg" href="#reserva"><span>Reservar cita</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 — SERVICIOS Y PRECIOS ============
+       Reference: centered kicker+heading over the same brick environment,
+       a 3-column icon-badge grid, one item raised and filled solid orange. -->
+  <section class="beat services tex-brick" id="servicios" aria-labelledby="services-heading">
+    <div class="container">
+      <p class="eyebrow reveal"><span class="dot" aria-hidden="true"></span>Servicios y precios</p>
+      <h2 id="services-heading" class="beat-title reveal">El menú<br>de la casa.</h2>
+      <p class="beat-subtitle reveal">Precios y tiempos de referencia — se confirman al reservar.</p>
+
+      <ul class="service-grid reveal-group">
+        <li class="service-card-item reveal">
+          <button type="button" class="service-card" data-service-id="corte">
+            <span class="service-art"><img src="https://raw.githubusercontent.com/tobikadachi937/andres-barbershop/refs/heads/main/corte.png" alt="Ilustración vintage del servicio de corte" width="400" height="400" loading="lazy" decoding="async"></span>
+            <span class="service-name">Corte</span>
+            <span class="service-desc">Clásico o a la medida, con acabado preciso.</span>
+            <span class="service-meta"><span class="mono">45 min</span><span class="mono service-price">₡4.500</span></span>
+            <span class="service-cta mono">Reservar este<span aria-hidden="true"> →</span></span>
+          </button>
+        </li>
+        <li class="service-card-item reveal">
+          <button type="button" class="service-card" data-service-id="corte-lavado">
+            <span class="service-art"><img src="https://raw.githubusercontent.com/tobikadachi937/andres-barbershop/refs/heads/main/corte-lavado.png" alt="Ilustración vintage del servicio de corte y lavado" width="400" height="400" loading="lazy" decoding="async"></span>
+            <span class="service-name">Corte + Lavado</span>
+            <span class="service-desc">El corte completo, con lavado incluido.</span>
+            <span class="service-meta"><span class="mono">60 min</span><span class="mono service-price">₡6.500</span></span>
+            <span class="service-cta mono">Reservar este<span aria-hidden="true"> →</span></span>
+          </button>
+        </li>
+        <li class="service-card-item service-card-item--featured reveal">
+          <button type="button" class="service-card service-card--featured" data-service-id="corte-barba">
+            <span class="service-badge mono">Más pedido</span>
+            <span class="service-art"><img src="https://raw.githubusercontent.com/tobikadachi937/andres-barbershop/refs/heads/main/corte-barba.png" alt="Ilustración vintage del servicio de corte y barba" width="400" height="400" loading="lazy" decoding="async"></span>
+            <span class="service-name">Corte + Barba</span>
+            <span class="service-desc">La combinación completa, de principio a fin.</span>
+            <span class="service-meta"><span class="mono">75 min</span><span class="mono service-price">₡7.000</span></span>
+            <span class="service-cta mono">Reservar este<span aria-hidden="true"> →</span></span>
+          </button>
+        </li>
+        <li class="service-card-item reveal">
+          <button type="button" class="service-card" data-service-id="barba">
+            <span class="service-art"><img src="https://raw.githubusercontent.com/tobikadachi937/andres-barbershop/refs/heads/main/barba.png" alt="Ilustración vintage del servicio de barba" width="400" height="400" loading="lazy" decoding="async"></span>
+            <span class="service-name">Barba</span>
+            <span class="service-desc">Perfilado y definición, a navaja o máquina.</span>
+            <span class="service-meta"><span class="mono">45 min</span><span class="mono service-price">₡4.000</span></span>
+            <span class="service-cta mono">Reservar este<span aria-hidden="true"> →</span></span>
+          </button>
+        </li>
+        <li class="service-card-item reveal">
+          <button type="button" class="service-card" data-service-id="corte-nino">
+            <span class="service-art"><img src="https://raw.githubusercontent.com/tobikadachi937/andres-barbershop/refs/heads/main/corte-nino.png" alt="Ilustración vintage del servicio de corte de niño" width="400" height="400" loading="lazy" decoding="async"></span>
+            <span class="service-name">Corte de niño</span>
+            <span class="service-desc">Paciencia y buen ojo para los más chiquitos.</span>
+            <span class="service-meta"><span class="mono">45 min</span><span class="mono service-price">₡4.000</span></span>
+            <span class="service-cta mono">Reservar este<span aria-hidden="true"> →</span></span>
+          </button>
+        </li>
+        <li class="service-card-item reveal">
+          <button type="button" class="service-card" data-service-id="corte-diseno">
+            <span class="service-art"><img src="https://raw.githubusercontent.com/tobikadachi937/andres-barbershop/refs/heads/main/corte-diseno.png" alt="Ilustración vintage del servicio de corte con diseño" width="400" height="400" loading="lazy" decoding="async"></span>
+            <span class="service-name">Corte + Diseño</span>
+            <span class="service-desc">Líneas y detalle agregado al corte base.</span>
+            <span class="service-meta"><span class="mono">60 min</span><span class="mono service-price">₡7.500</span></span>
+            <span class="service-cta mono">Reservar este<span aria-hidden="true"> →</span></span>
+          </button>
+        </li>
+        <li class="service-card-item service-card-item--last reveal">
+          <button type="button" class="service-card" data-service-id="cejas">
+            <span class="service-art"><img src="https://raw.githubusercontent.com/tobikadachi937/andres-barbershop/refs/heads/main/cejas.png" alt="Ilustración vintage del servicio de cejas" width="400" height="400" loading="lazy" decoding="async"></span>
+            <span class="service-name">Cejas</span>
+            <span class="service-desc">Perfilado rápido y limpio.</span>
+            <span class="service-meta"><span class="mono">15 min</span><span class="mono service-price">₡1.500</span></span>
+            <span class="service-cta mono">Reservar este<span aria-hidden="true"> →</span></span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="services-cta reveal">
+        <a class="btn btn-primary btn-lg" href="#reserva" id="services-main-cta"><span>Reservar mi corte</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 — CONOCE A TU BARBERO ============
+       Reference model: one dominant photographic element with bold text
+       overlapping it, not a 50/50 corporate split. -->
+  <section class="beat barber" id="barbero" aria-labelledby="barber-heading">
+    <div class="barber-photo" aria-hidden="true">
+      <!-- Temporary stock photo — establishes composition only. Not
+           Andrés' real portrait. Replace src with his photo when
+           available; layout does not need to change. -->
+      <img src="https://images.unsplash.com/photo-1699641975121-5c3f55a553e5?auto=format&amp;fit=crop&amp;crop=faces&amp;w=1000&amp;h=1250&amp;q=75" alt="" width="1000" height="1250" loading="lazy" decoding="async">
+    </div>
+    <div class="barber-copy">
+      <p class="eyebrow reveal"><span class="dot" aria-hidden="true"></span>Conocé a tu barbero</p>
+      <h2 id="barber-heading" class="beat-title reveal barber-title">Andrés.</h2>
+      <p class="barber-desc reveal">Una barbería, un barbero, un estándar. Andrés atiende cada
+        cita personalmente — sin prisa, sin fórmulas genéricas, con el corte que vos pediste.</p>
+      <a class="btn btn-primary reveal" href="#reserva" id="barber-cta"><span>Reservar con Andrés</span></a>
+    </div>
+  </section>
+
+  <!-- ============ 04 — TRABAJOS ============
+       Reference: full-width orange banner heading, then a staggered row
+       of bordered photo tiles over a ghosted watermark word, with
+       carousel arrows. -->
+  <section class="beat work" id="trabajos" aria-labelledby="work-heading">
+    <div class="work-band">
+      <div class="container">
+        <h2 id="work-heading" class="work-title">Trabajos</h2>
+      </div>
+    </div>
+
+    <div class="work-gallery-wrap">
+      <span class="work-watermark" aria-hidden="true">TRABAJOS</span>
+      <button type="button" class="work-arrow work-arrow-prev" id="work-prev" aria-label="Ver trabajo anterior">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M15 5 L8 12 L15 19" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="work-gallery" id="work-gallery" role="group" aria-label="Galería de estilos de referencia">
+        <!-- Eleven temporary stock photos — establish carousel composition
+             and rhythm only. Not Andrés' portfolio. Replace each src with
+             his real work when available; layout does not need to change.
+             The .work-track wrapper is what the desktop carousel JS
+             translates — see script.js for why this was necessary (the
+             gallery previously switched to display:grid on desktop, which
+             silently disabled the prev/next buttons). -->
+        <div class="work-track" id="work-track">
+        <figure class="work-item reveal">
+          <img src="https://images.unsplash.com/photo-1520338661084-680395057c93?auto=format&amp;fit=crop&amp;crop=faces&amp;w=700&amp;h=900&amp;q=70" alt="Corte de referencia — imagen provisional" width="700" height="900" loading="lazy" decoding="async">
+        </figure>
+        <figure class="work-item work-item--offset reveal">
+          <img src="https://images.unsplash.com/photo-1770253980732-dfed1cfdfa43?auto=format&amp;fit=crop&amp;crop=faces&amp;w=700&amp;h=900&amp;q=70" alt="Corte de referencia — imagen provisional" width="700" height="900" loading="lazy" decoding="async">
+        </figure>
+        <figure class="work-item reveal">
+          <img src="https://images.unsplash.com/photo-1682989356229-a244c8903492?auto=format&amp;fit=crop&amp;crop=faces&amp;w=700&amp;h=900&amp;q=70" alt="Corte de referencia — imagen provisional" width="700" height="900" loading="lazy" decoding="async">
+        </figure>
+        <figure class="work-item work-item--offset reveal">
+          <img src="https://images.unsplash.com/photo-1699641975121-5c3f55a553e5?auto=format&amp;fit=crop&amp;crop=entropy&amp;w=700&amp;h=900&amp;q=70" alt="Corte de referencia — imagen provisional" width="700" height="900" loading="lazy" decoding="async">
+        </figure>
+        <figure class="work-item reveal">
+          <img src="https://images.unsplash.com/photo-1634480257305-7f4ca3582e6a?auto=format&amp;fit=crop&amp;crop=faces&amp;w=700&amp;h=900&amp;q=70" alt="Corte de referencia — imagen provisional" width="700" height="900" loading="lazy" decoding="async">
+        </figure>
+        <figure class="work-item work-item--offset reveal">
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&amp;fit=crop&amp;crop=entropy&amp;w=700&amp;h=900&amp;q=70" alt="Corte de referencia — imagen provisional" width="700" height="900" loading="lazy" decoding="async">
+        </figure>
+        <figure class="work-item reveal">
+          <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&amp;fit=crop&amp;w=700&amp;h=900&amp;q=70" alt="Silla de barbería — imagen provisional" width="700" height="900" loading="lazy" decoding="async">
+        </figure>
+        <figure class="work-item work-item--offset reveal">
+          <img src="https://images.unsplash.com/photo-1675599193990-33d71150902b?auto=format&amp;fit=crop&amp;crop=entropy&amp;w=700&amp;h=900&amp;q=70" alt="Interior de barbería — imagen provisional" width="700" height="900" loading="lazy" decoding="async">
+        </figure>
+        <figure class="work-item reveal">
+          <img src="https://images.unsplash.com/photo-1520338661084-680395057c93?auto=format&amp;fit=crop&amp;crop=entropy&amp;w=700&amp;h=900&amp;q=70" alt="Corte de referencia — imagen provisional" width="700" height="900" loading="lazy" decoding="async">
+        </figure>
+        <figure class="work-item work-item--offset reveal">
+          <img src="https://images.unsplash.com/photo-1770253980732-dfed1cfdfa43?auto=format&amp;fit=crop&amp;crop=entropy&amp;w=700&amp;h=900&amp;q=70" alt="Corte de referencia — imagen provisional" width="700" height="900" loading="lazy" decoding="async">
+        </figure>
+        <figure class="work-item reveal">
+          <img src="https://images.unsplash.com/photo-1699641975121-5c3f55a553e5?auto=format&amp;fit=crop&amp;crop=faces&amp;w=700&amp;h=900&amp;q=70" alt="Corte de referencia — imagen provisional" width="700" height="900" loading="lazy" decoding="async">
+        </figure>
+        </div>
+      </div>
+      <button type="button" class="work-arrow work-arrow-next" id="work-next" aria-label="Ver siguiente trabajo">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 5 L16 12 L9 19" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ 05 — RESERVA ============
+       Reference: full orange/brick band, a black card floating on it with
+       a prop breaking its edge. -->
+  <section class="beat booking" id="reserva" aria-labelledby="booking-heading">
+    <div class="container booking-inner">
+      <h2 id="booking-heading" class="booking-title reveal">Reservá tu cita</h2>
+      <p class="booking-subtitle reveal">Rápido, sin vueltas. Confirmamos por WhatsApp.</p>
+
+      <div class="booking-panel reveal">
+        <svg class="prop prop-scissors booking-prop-a" viewBox="0 0 60 60" aria-hidden="true"><path d="M12,48 c-4,-4 -10,-1 -8,4 c2,4 7,2 6,-2 M12,48 L50,14 M10,14 c-4,-4 -10,-1 -8,4 c2,4 7,2 6,-2 M10,14 L48,48" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+        <svg class="prop prop-razor booking-prop-b" viewBox="0 0 60 60" aria-hidden="true"><path d="M10,50 L44,16 M38,16 L44,16 L44,22" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="square"/></svg>
+        <p class="booking-panel-text">La reserva se confirma por WhatsApp.</p>
+        <a class="btn btn-primary btn-xl" href="#" id="booking-cta"><span>Reservar cita</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 — UBICACIÓN ============
+       Reference model: the footer's "Contact / Business Hours" plain
+       label+text column treatment, not a card grid. -->
+  <section class="beat location tex-brick" id="ubicacion" aria-labelledby="location-heading">
+    <div class="container location-inner">
+      <div class="location-copy">
+        <p class="eyebrow reveal"><span class="dot" aria-hidden="true"></span>Ubicación</p>
+        <h2 id="location-heading" class="beat-title reveal">Tu barbería<br>en Moravia.</h2>
+
+        <dl class="location-facts reveal-group">
+          <div class="location-fact reveal">
+            <dt class="mono">Dirección</dt>
+            <dd>Moravia, San José, Costa Rica</dd>
+          </div>
+          <div class="location-fact reveal">
+            <dt class="mono">Horario</dt>
+            <dd>2:00 p. m. – 10:00 p. m.</dd>
+          </div>
+          <div class="location-fact reveal">
+            <dt class="mono">Teléfono</dt>
+            <dd><a class="tel-link" href="tel:+50686258020">8625 8020</a></dd>
+          </div>
+        </dl>
+
+        <a class="btn btn-primary" href="#" id="directions-link" target="_blank" rel="noopener noreferrer" aria-describedby="directions-note"><span>Cómo llegar</span></a>
+        <p id="directions-note" class="location-note">Se abre en Google Maps, en una pestaña nueva.</p>
+      </div>
+
+      <div class="location-map reveal">
+        <a class="location-map-panel" id="map-panel-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Abrir la ubicación de Andrés Barbershop en Google Maps">
+          <svg class="location-map-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4c-5 0-9 3.8-9 8.8 0 6.4 9 15.2 9 15.2s9-8.8 9-15.2C25 7.8 21 4 16 4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16" cy="12.6" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span class="location-map-title">MORAVIA<br>SAN JOSÉ<br>COSTA RICA</span>
+          <span class="location-map-cta mono">Abrir en Google Maps<span aria-hidden="true"> →</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07 — CONTACTO ============ -->
+  <section class="beat contact" id="contacto" aria-labelledby="contact-heading">
+    <div class="container">
+      <h2 id="contact-heading" class="beat-title reveal">Hablemos.</h2>
+    </div>
+
+    <div class="contact-grid">
+      <button type="button" class="contact-block reveal" id="contact-book-btn">
+        <span class="contact-block-q mono">¿Ocupás un corte?</span>
+        <span class="contact-block-a">Reservá tu espacio.</span>
+        <span class="contact-block-cta">Reservar<span aria-hidden="true"> →</span></span>
+      </button>
+      <a class="contact-block reveal" href="#" id="whatsapp-link">
+        <span class="contact-block-q mono">¿Tenés una pregunta?</span>
+        <span class="contact-block-a">Escribinos.</span>
+        <span class="contact-block-cta">WhatsApp<span aria-hidden="true"> →</span></span>
+      </a>
+      <a class="contact-block reveal" href="#" id="contact-maps-link" target="_blank" rel="noopener noreferrer">
+        <span class="contact-block-q mono">¿Querés caerle al local?</span>
+        <span class="contact-block-a">Te mostramos cómo llegar.</span>
+        <span class="contact-block-cta">Cómo llegar<span aria-hidden="true"> →</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING STATEMENT ============ -->
+  <section class="closing tex-brick" aria-hidden="true">
+    <span class="closing-text">GRACIAS.</span>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-top">
+    <img class="footer-logo" src="https://raw.githubusercontent.com/tobikadachi937/andres-barbershop/refs/heads/main/andres-logo-sm.png" alt="Andrés Barbershop" width="360" height="240">
+  </div>
+  <div class="container footer-inner">
+    <div class="footer-col">
+      <p class="mono footer-heading">Contacto</p>
+      <p class="footer-text"><a class="tel-link" href="tel:+50686258020">8625 8020</a></p>
+    </div>
+    <div class="footer-col">
+      <p class="mono footer-heading">Horario</p>
+      <p class="footer-text">2:00 p. m. – 10:00 p. m.</p>
+    </div>
+    <div class="footer-col">
+      <p class="mono footer-heading">Ubicación</p>
+      <p class="footer-text">Moravia, San José, Costa Rica</p>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p class="footer-legal">&copy; <span id="year"></span> Andrés Barbershop.</p>
+  </div>
+</footer>
+
+<!-- ============ BOOKING MODAL ============
+     One shared modal for every "Reservar" entry point on the site
+     (service cards, section CTAs, contact block). Service and time
+     options are rendered by script.js from the SERVICES / TIME_SLOTS
+     data, not duplicated here in markup. -->
+<div class="booking-modal-backdrop" id="booking-modal-backdrop" hidden></div>
+<div class="booking-modal" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" hidden>
+  <div class="booking-modal-panel">
+    <div class="booking-modal-head">
+      <p class="booking-modal-step-label mono" id="booking-modal-step-label">PASO 1 DE 5</p>
+      <button type="button" class="booking-modal-close" id="booking-modal-close" aria-label="Cerrar reserva">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <h2 class="booking-modal-title" id="booking-modal-title">Reservar cita</h2>
+
+    <div class="booking-modal-body" id="booking-modal-body">
+      <div class="booking-step" data-step="1">
+        <p class="booking-step-heading" id="booking-service-heading">Elegí el servicio</p>
+        <div class="booking-option-list" id="booking-service-list" role="radiogroup" aria-labelledby="booking-service-heading"></div>
+      </div>
+
+      <div class="booking-step" data-step="2" hidden>
+        <label class="booking-step-heading" for="booking-date-input">Elegí la fecha</label>
+        <input type="date" id="booking-date-input" class="booking-date-input">
+      </div>
+
+      <div class="booking-step" data-step="3" hidden>
+        <p class="booking-step-heading" id="booking-time-heading">Elegí la hora</p>
+        <div class="booking-option-list booking-option-list--time" id="booking-time-list" role="radiogroup" aria-labelledby="booking-time-heading"></div>
+      </div>
+
+      <div class="booking-step" data-step="4" hidden>
+        <label class="booking-step-heading" for="booking-name-input">Tu nombre</label>
+        <input type="text" id="booking-name-input" class="booking-name-input" autocomplete="name" placeholder="Nombre y apellido">
+      </div>
+
+      <div class="booking-step" data-step="5" hidden>
+        <p class="booking-step-heading">Confirmá tu reserva</p>
+        <dl class="booking-summary" id="booking-summary"></dl>
+        <p class="booking-modal-note" id="booking-whatsapp-note" hidden>No pudimos preparar el envío por WhatsApp. Intentá de nuevo en un momento.</p>
+      </div>
+    </div>
+
+    <p class="booking-modal-error" id="booking-modal-error" role="alert" aria-live="assertive" hidden></p>
+
+    <div class="booking-modal-actions">
+      <button type="button" class="btn booking-modal-back" id="booking-modal-back" hidden>Atrás</button>
+      <button type="button" class="btn btn-primary booking-modal-next" id="booking-modal-next">Siguiente</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

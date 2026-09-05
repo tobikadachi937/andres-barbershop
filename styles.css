@@ -1,0 +1,628 @@
+/* ==========================================================================
+   ANDRÉS BARBERSHOP — V4 design system
+
+   This build reconstructs the supplied Behance desktop screenshots as a
+   layout specification, not loose inspiration. Per-section notes are next
+   to each block below; the overall departures from the last round are:
+
+   1. The fake CSS brick pattern is GONE. The environment is now a real
+      photograph (Unsplash, license-clear, no attribution required),
+      darkened with a gradient overlay for contrast — the same technique
+      the reference itself uses.
+   2. Every photographic area contains an actual barber-related photo.
+      Nothing reads "Foto próximamente" anymore.
+   3. The approved logo assets are used as real <img> elements, at full
+      prominence in the hero — nothing here recreates them.
+   ========================================================================== */
+
+:root {
+  --brick: #1A1210;
+  --brick-deep: #120B09;
+  --ink: #120D0A;
+  --cream: #F3E9D8;
+  --cream-dim: #CBBFAC;
+  --cream-faint: #93887A;
+  --amber: #E08A2E;
+  --amber-bright: #F4A64C;
+  --amber-deep: #B96A1E;
+  --barber-red: #A5261F;
+  --barber-blue: #1F3F5C;
+  --line: rgba(243, 233, 216, 0.16);
+  --line-strong: rgba(243, 233, 216, 0.3);
+
+  --font-display: 'Anton', sans-serif;
+  --font-body: 'Work Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 16px; --sp-4: 24px; --sp-5: 32px;
+  --sp-6: 48px; --sp-7: 64px; --sp-8: 96px; --sp-9: 140px;
+
+  --content-max: 1280px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 550ms;
+
+  /* Real brick photograph — used as the base environment behind Servicios,
+     Barbero, Ubicación and the closing statement, matching the reference's
+     continuous physical backdrop. Darkened with an overlay gradient. */
+  --brick-photo: url('https://images.unsplash.com/photo-1592853598064-5a7fa150592c?auto=format&fit=crop&w=1600&q=65');
+}
+
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--brick); color: var(--cream);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+.tel-link:hover, .tel-link:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
+ul, ol, dl { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, dt, dd, p { margin: 0; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+.mono { font-family: var(--font-mono); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* Shared real-photo brick environment, dark overlay baked in via gradient
+   so text/logo contrast stays high without a separate overlay element. */
+.tex-brick {
+  background-image:
+    linear-gradient(rgba(18,11,9,0.88), rgba(18,11,9,0.88)),
+    var(--brick-photo);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--brick);
+}
+
+.skip-link {
+  position: absolute; left: 0; top: -100px; z-index: 1000; background: var(--amber); color: var(--ink);
+  padding: 12px 20px; font-family: var(--font-mono); font-weight: 700; font-size: 13px; transition: top var(--dur) var(--ease);
+}
+.skip-link:focus { top: 0; }
+
+:focus-visible { outline: 2px solid var(--amber-bright); outline-offset: 3px; }
+
+.container { max-width: var(--content-max); margin-inline: auto; padding-inline: var(--sp-4); }
+@media (min-width: 1024px) { .container { padding-inline: var(--sp-6); } }
+
+.beat { position: relative; padding-block: var(--sp-8) 0; }
+@media (min-width: 1024px) { .beat { padding-block: var(--sp-9) 0; } }
+
+.eyebrow {
+  font-family: var(--font-mono); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px;
+  color: var(--amber-bright); display: inline-flex; align-items: center; gap: 10px; margin-bottom: var(--sp-3);
+  justify-content: center; width: 100%;
+}
+.eyebrow .dot { width: 6px; height: 6px; background: var(--amber-bright); border-radius: 50%; flex-shrink: 0; }
+
+.beat-title {
+  font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
+  font-size: clamp(2.5rem, 7vw, 4.5rem); line-height: 0.96; letter-spacing: 0.005em;
+  text-align: center;
+}
+.beat-subtitle { color: var(--cream-dim); max-width: 46ch; margin: var(--sp-3) auto 0; font-size: 1.0625rem; text-align: center; }
+.location .eyebrow, .barber .eyebrow { justify-content: flex-start; text-align: left; }
+.location .beat-title { text-align: left; }
+.location .beat-subtitle { text-align: left; margin-inline: 0; }
+.barber-title { text-align: left; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: var(--font-mono); font-weight: 700; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 16px 30px; border-radius: 6px;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform 150ms var(--ease);
+}
+.btn-primary { background: var(--amber); color: var(--ink); }
+.btn-primary:hover, .btn-primary:focus-visible { background: var(--amber-bright); }
+.btn-primary:active { transform: scale(0.98); }
+.btn-lg { padding: 18px 36px; font-size: 15px; }
+.btn-xl { padding: 22px 46px; font-size: 16px; }
+.btn-block { display: flex; width: 100%; }
+
+/* ---------- reveal-on-scroll ---------- */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease); }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* ==========================================================================
+   HEADER / NAV
+   ========================================================================== */
+.site-header { position: sticky; top: 0; z-index: 100; padding: var(--sp-3) 0; }
+.header-inner {
+  max-width: var(--content-max); margin-inline: auto; padding-inline: var(--sp-4);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4);
+  background: rgba(18, 11, 9, 0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid var(--amber-deep); border-radius: 8px; padding: 8px var(--sp-4);
+  transition: padding 300ms var(--ease), background 300ms var(--ease);
+}
+@media (min-width: 1024px) { .header-inner { padding-inline: var(--sp-5); } }
+.site-header.is-scrolled .header-inner { background: rgba(14, 9, 7, 0.96); }
+
+.brand { display: flex; align-items: center; }
+.brand-logo { height: 52px; width: auto; object-fit: contain; }
+@media (min-width: 1024px) { .brand-logo { height: 60px; } }
+
+.primary-nav { display: none; }
+@media (min-width: 900px) { .primary-nav { display: block; } }
+.primary-nav ul { display: flex; gap: var(--sp-5); }
+.primary-nav a {
+  font-family: var(--font-mono); font-weight: 500; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--cream-dim); transition: color 200ms var(--ease); padding: 6px 2px;
+}
+.primary-nav a:hover, .primary-nav a:focus-visible { color: var(--amber-bright); }
+
+.header-actions { display: flex; align-items: center; gap: var(--sp-3); }
+.header-actions .btn-primary { display: none; padding: 12px 22px; font-size: 13px; }
+@media (min-width: 900px) { .header-actions .btn-primary { display: inline-flex; } }
+
+.menu-toggle { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+@media (min-width: 900px) { .menu-toggle { display: none; } }
+.menu-icon { width: 20px; height: 14px; position: relative; display: block; }
+.menu-icon span { position: absolute; left: 0; width: 100%; height: 2px; background: var(--cream); transition: transform 250ms var(--ease), opacity 250ms var(--ease); }
+.menu-icon span:nth-child(1) { top: 0; }
+.menu-icon span:nth-child(2) { top: 6px; }
+.menu-icon span:nth-child(3) { top: 12px; }
+[aria-expanded="true"] .menu-icon span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+[aria-expanded="true"] .menu-icon span:nth-child(2) { opacity: 0; }
+[aria-expanded="true"] .menu-icon span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.mobile-nav {
+  position: fixed; inset: 0; z-index: 200; background: var(--brick-deep);
+  display: flex; flex-direction: column; padding: var(--sp-4);
+  opacity: 0; visibility: hidden; transform: translateY(-8px);
+  transition: opacity 320ms var(--ease), transform 320ms var(--ease), visibility 0s linear 320ms;
+}
+.mobile-nav.is-open { opacity: 1; visibility: visible; transform: none; transition: opacity 320ms var(--ease), transform 320ms var(--ease); }
+@media (min-width: 900px) { .mobile-nav { display: none; } }
+.mobile-nav-head { display: flex; align-items: center; justify-content: space-between; padding-block: var(--sp-2); }
+.mobile-nav-head .brand-logo { height: 46px; }
+.menu-close { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+.mobile-nav-list { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.mobile-nav-list li {
+  display: flex; align-items: baseline; gap: var(--sp-3); padding-block: var(--sp-3);
+  border-top: 1px solid var(--line); opacity: 0; transform: translateY(10px);
+  transition: opacity 400ms var(--ease), transform 400ms var(--ease);
+}
+.mobile-nav.is-open .mobile-nav-list li { opacity: 1; transform: none; }
+.mobile-nav-list li:nth-child(1) { transition-delay: 60ms; }
+.mobile-nav-list li:nth-child(2) { transition-delay: 100ms; }
+.mobile-nav-list li:nth-child(3) { transition-delay: 140ms; }
+.mobile-nav-list li:nth-child(4) { transition-delay: 180ms; }
+.mobile-nav-list li:nth-child(5) { transition-delay: 220ms; }
+.mobile-nav-list li:nth-child(6) { transition-delay: 260ms; border-bottom: 1px solid var(--line); }
+.mobile-nav-list .idx { color: var(--amber-bright); font-size: 13px; }
+.mobile-nav-list a { font-family: var(--font-display); text-transform: uppercase; font-size: 1.75rem; }
+.mobile-nav-foot { padding-top: var(--sp-4); }
+html.nav-open, html.nav-open body { overflow: hidden; height: 100%; }
+
+/* ==========================================================================
+   HERO — real photo background, floating props, the logo carrying the
+   "huge branding statement" role the reference gives its wordmark.
+   ========================================================================== */
+.hero {
+  position: relative; min-height: 100svh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 140px var(--sp-4) var(--sp-7); overflow: hidden; isolation: isolate;
+}
+@media (min-width: 1024px) { .hero { padding-inline: var(--sp-6); } }
+
+.hero-bg { position: absolute; inset: 0; z-index: -2; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+.hero-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 75% 55% at 50% 30%, rgba(224,138,46,0.14), transparent 62%),
+    linear-gradient(180deg, rgba(18,11,9,0.62) 0%, rgba(18,11,9,0.42) 38%, rgba(18,11,9,0.96) 100%);
+}
+
+.hero-props { position: absolute; inset: 0; z-index: -1; pointer-events: none; color: var(--amber); }
+.prop { position: absolute; opacity: 0.45; }
+.hero .prop-scissors { width: 64px; height: 64px; top: 100px; right: 6%; transform: rotate(18deg); }
+.hero .prop-brush { width: 44px; height: 66px; left: 7%; bottom: 22%; transform: rotate(-14deg); }
+@media (min-width: 700px) {
+  .hero .prop-scissors { width: 96px; height: 96px; top: 130px; right: 9%; }
+  .hero .prop-brush { width: 60px; height: 90px; left: 10%; bottom: 26%; }
+}
+
+.hero-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+.hero-logo { width: min(88vw, 620px); height: auto; filter: drop-shadow(0 8px 26px rgba(0,0,0,0.6)); }
+@media (min-width: 900px) { .hero-logo { width: min(56vw, 720px); } }
+.hero-kicker { font-size: 13px; font-weight: 700; letter-spacing: 0.16em; color: var(--cream-dim); display: inline-flex; align-items: center; gap: 10px; margin-top: var(--sp-4); }
+.hero-kicker .dot { width: 6px; height: 6px; background: var(--amber-bright); border-radius: 50%; }
+.hero-tagline { font-family: var(--font-body); font-style: italic; font-weight: 500; font-size: clamp(1.0625rem, 2vw, 1.375rem); color: var(--cream); margin-top: var(--sp-2); text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
+.hero-actions { margin-top: var(--sp-5); }
+
+/* ==========================================================================
+   SERVICIOS — icon-badge grid on the shared brick photo, one featured item.
+   Cards are now real <button> elements (data-service-id) so the whole
+   card is clickable/keyboard-activatable and opens the booking flow with
+   that service pre-selected. */
+.service-grid { margin-top: var(--sp-6); display: grid; grid-template-columns: 1fr; gap: var(--sp-4); }
+@media (min-width: 700px) { .service-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1100px) { .service-grid { grid-template-columns: repeat(3, 1fr); } }
+.service-card-item { display: flex; } /* stretches the button below to fill the grid cell */
+
+/* The final CEJAS card would otherwise sit alone in a trailing row,
+   flush left, reading as a grid leftover. Spanning the full row and
+   centering it (constrained to one column's natural width) makes that
+   final position feel deliberate at both the 2-col and 3-col grids,
+   without needing separate per-breakpoint column-index math. Mobile is
+   single-column already, so this is a no-op there — full width like
+   every other card, not narrowed. */
+@media (min-width: 700px) {
+  .service-card-item--last { grid-column: 1 / -1; display: flex; justify-content: center; }
+  .service-card-item--last .service-card { max-width: 360px; }
+}
+
+.service-card {
+  position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--sp-2);
+  width: 100%; padding: var(--sp-5) var(--sp-4) var(--sp-5); border: 2px solid var(--line-strong); border-radius: 14px;
+  background: rgba(18,11,9,0.35); cursor: pointer; isolation: isolate;
+  transition: border-color 280ms var(--ease), background 280ms var(--ease), transform 280ms var(--ease), box-shadow 280ms var(--ease), z-index 0ms;
+}
+.service-card:hover, .service-card:focus-visible {
+  border-color: var(--amber-bright); transform: translateY(-4px);
+  background: rgba(224,138,46,0.24); box-shadow: 0 16px 32px rgba(0,0,0,0.45);
+  z-index: 2;
+}
+.service-card:active { transform: translateY(-1px) scale(0.99); }
+
+/* ---------- Service artwork ----------
+   The seven approved illustrations are the visual protagonists now — no
+   more small icon badge/circle. Each image sizes itself by width only
+   (height:auto), so its real aspect ratio is always respected regardless
+   of composition; the card's padding/gap give it room to breathe instead
+   of confining it. A very subtle warm glow appears behind it on hover —
+   restrained, not a spotlight — and the artwork itself scales slightly,
+   never rotates or blurs. */
+.service-art {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  width: 128px; height: 124px; margin: 0 auto var(--sp-2); overflow: hidden;
+}
+@media (min-width: 700px) { .service-art { width: 154px; height: 148px; } }
+@media (min-width: 1100px) { .service-art { width: 184px; height: 176px; } }
+.service-art::before {
+  content: ""; position: absolute; inset: -10%; z-index: 0; border-radius: 50%;
+  background: radial-gradient(circle, rgba(224,138,46,0.22), transparent 68%);
+  opacity: 0; transition: opacity 280ms var(--ease); pointer-events: none;
+}
+.service-card:hover .service-art::before, .service-card:focus-visible .service-art::before { opacity: 1; }
+.service-art img {
+  position: relative; z-index: 1; width: 100%; height: 100%; object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+  transition: transform 280ms var(--ease); pointer-events: none;
+}
+.service-card:hover .service-art img, .service-card:focus-visible .service-art img { transform: scale(1.055); }
+
+/* The artwork already carries its own service-name plaque — this text
+   stays real, semantic and screen-reader-visible, but visually secondary:
+   a small confirming caption underneath, not a competing headline. */
+.service-name {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.service-desc { color: var(--cream-dim); font-size: 0.9375rem; max-width: 26ch; }
+.service-meta { display: flex; align-items: baseline; gap: var(--sp-4); margin-top: var(--sp-2); padding-top: var(--sp-2); border-top: 1px solid var(--line); width: 100%; justify-content: center; }
+.service-meta .mono:first-child { font-size: 12px; color: var(--cream-faint); }
+.service-price { font-size: 1.125rem; color: var(--cream); font-weight: 700; }
+
+/* Desktop: the "Reservar este →" affordance is revealed on hover/focus,
+   sliding up from the card's bottom edge — this is the "obvious it's
+   clickable" signal the plain border/lift alone didn't provide. */
+.service-cta {
+  font-size: 12px; letter-spacing: 0.06em; color: var(--amber-bright); text-transform: uppercase;
+  max-height: 0; opacity: 0; margin-top: 0; overflow: hidden;
+  transition: max-height 280ms var(--ease), opacity 220ms var(--ease), margin-top 280ms var(--ease), color 280ms var(--ease);
+}
+.service-card:hover .service-cta, .service-card:focus-visible .service-cta { max-height: 30px; opacity: 1; margin-top: var(--sp-2); color: var(--amber-bright); font-weight: 700; }
+
+/* Mobile/touch: there is no hover, so the affordance stays persistently
+   visible instead of being revealed — nothing important is ever hidden
+   behind an interaction the device can't perform. */
+@media (hover: none) {
+  .service-cta { max-height: 30px; opacity: 0.85; margin-top: var(--sp-2); }
+}
+
+.service-card--featured { background: rgba(224,138,46,0.14); border-color: var(--amber); }
+.service-card--featured .service-art { margin-top: var(--sp-4); }
+.service-card--featured:hover, .service-card--featured:focus-visible { background: var(--amber); }
+.service-card--featured .service-meta { border-top-color: rgba(18,13,10,0.2); }
+.service-card--featured .service-meta .mono:first-child { color: var(--cream-faint); }
+.service-card--featured:hover .service-name, .service-card--featured:hover .service-price,
+.service-card--featured:hover .service-cta { color: var(--ink); }
+.service-card--featured:hover .service-meta .mono:first-child { color: rgba(18,13,10,0.6); }
+.service-card--featured:hover .service-desc { color: rgba(18,13,10,0.72); }
+.service-card--featured:hover .service-meta { border-top-color: rgba(18,13,10,0.3); }
+
+/* MÁS PEDIDO — a corner tag fully inside the card's own padding box, not
+   a floating badge with a negative offset over an overflow-clipped
+   parent (the previous implementation's actual bug). It can never be
+   clipped because it never leaves the card's bounds in the first place. */
+.service-badge {
+  position: absolute; top: var(--sp-3); right: var(--sp-3); z-index: 2; background: var(--ink); color: var(--amber-bright);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 5px 12px; border-radius: 999px; white-space: nowrap;
+  pointer-events: none;
+}
+.service-card--featured:hover .service-badge { background: var(--ink); color: var(--amber-bright); }
+
+@media (min-width: 700px) { .service-card-item--featured { grid-column: span 2; } }
+@media (min-width: 1100px) { .service-card-item--featured { grid-column: span 1; } }
+
+.services-cta { margin-top: var(--sp-7); text-align: center; }
+
+/* ==========================================================================
+   BARBERO — one dominant photo with bold text, not a 50/50 split
+   ========================================================================== */
+.barber { padding-block: 0; }
+.barber-photo { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+@media (min-width: 900px) { .barber-photo { aspect-ratio: 21/9; } }
+.barber-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+.barber-photo::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(18,11,9,0.97) 0%, rgba(18,11,9,0.5) 55%, rgba(18,11,9,0.15) 100%);
+}
+.barber-copy { position: relative; margin-top: -120px; z-index: 1; padding: 0 var(--sp-4) var(--sp-8); }
+@media (min-width: 1024px) { .barber-copy { padding-inline: var(--sp-6); margin-top: -180px; } }
+.barber-desc { color: var(--cream-dim); max-width: 46ch; margin: var(--sp-4) 0 var(--sp-5); font-size: 1.0625rem; }
+
+/* ==========================================================================
+   TRABAJOS — amber banner + staggered watermarked gallery with arrows
+
+   BUG FIX: this previously switched the gallery to display:grid at
+   desktop widths, showing all six items statically — which silently
+   disabled the prev/next buttons (there was nothing left to scroll to;
+   scrollBy() had no effect since overflow was visible, not scrollable).
+   Now: .work-gallery stays a real scroll container at every width
+   (native touch/trackpad scroll always works, no JS required for that),
+   and .work-track is the inner flex row the desktop-only JS translates
+   via transform to move by one tile per click — see script.js. Mobile
+   keeps native scroll-snap; desktop swaps to a controlled slide.
+   ========================================================================== */
+.work-band { background: var(--amber); padding-block: var(--sp-5); text-align: center; }
+.work-title { font-family: var(--font-display); text-transform: uppercase; color: var(--ink); font-size: clamp(2.25rem, 6vw, 3.75rem); line-height: 0.94; }
+.work-subtitle { color: rgba(18,13,10,0.72); margin-top: var(--sp-2); font-size: 0.9375rem; }
+
+.work-gallery-wrap { position: relative; display: flex; align-items: center; gap: var(--sp-2); padding-block: var(--sp-6); background: var(--brick-deep); }
+.work-watermark {
+  position: absolute; top: -6px; left: 50%; transform: translateX(-50%); z-index: 0;
+  font-family: var(--font-display); text-transform: uppercase; font-size: clamp(3.5rem, 15vw, 10rem);
+  color: transparent; -webkit-text-stroke: 1px var(--line-strong); text-stroke: 1px var(--line-strong);
+  white-space: nowrap; pointer-events: none; line-height: 1;
+}
+.work-arrow {
+  position: relative; z-index: 1; flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+  border: 1.5px solid var(--amber-deep); color: var(--cream); display: none; align-items: center; justify-content: center;
+  transition: background 200ms var(--ease), color 200ms var(--ease), opacity 200ms var(--ease);
+}
+.work-arrow:hover, .work-arrow:focus-visible { background: var(--amber); color: var(--ink); }
+.work-arrow:disabled { opacity: 0.35; cursor: default; background: none; color: var(--cream); }
+@media (min-width: 700px) { .work-arrow { display: flex; margin-inline: var(--sp-2); } }
+
+.work-gallery {
+  position: relative; z-index: 1; flex: 1; overflow-x: auto;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  /* Fade-mask on the trailing edge — a visible, non-verbal hint that more
+     tiles exist beyond the frame, on top of the natural partial-tile peek
+     already visible at typical mobile widths. */
+  -webkit-mask-image: linear-gradient(90deg, #000 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 92%, transparent 100%);
+}
+.work-gallery::-webkit-scrollbar { display: none; }
+.work-track { display: flex; gap: var(--sp-3); padding: var(--sp-3) var(--sp-4); width: max-content; }
+@media (min-width: 1024px) { .work-track { padding-inline: var(--sp-3); } }
+.work-item {
+  position: relative; flex: 0 0 auto; width: 54vw; max-width: 260px; aspect-ratio: 3/4;
+  scroll-snap-align: start; margin: 0; border: 2px solid var(--amber-deep); border-radius: 14px; overflow: hidden;
+}
+.work-item img { width: 100%; height: 100%; object-fit: cover; }
+.work-item--offset { margin-top: var(--sp-6); border-color: var(--barber-blue); }
+
+@media (min-width: 1024px) {
+  .work-item { width: 300px; }
+  /* Desktop: JS takes over navigation via transform on .work-track, so
+     native scrolling and its snap/mask are switched off here — the mask
+     above is a mobile-only affordance, not needed once arrows are the
+     primary control. */
+  .work-gallery { overflow: hidden; scroll-snap-type: none; -webkit-mask-image: none; mask-image: none; }
+  .work-track { transition: transform 480ms var(--ease); will-change: transform; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-track { transition: none; }
+}
+
+/* ==========================================================================
+   RESERVA — full orange/brick band with a black breakout panel
+   ========================================================================== */
+.booking {
+  text-align: center; padding-block: var(--sp-8); overflow: visible; color: var(--ink);
+  background-image:
+    linear-gradient(rgba(224,138,46,0.9), rgba(224,138,46,0.9)),
+    var(--brick-photo);
+  background-size: cover; background-position: center; background-color: var(--amber);
+}
+@media (min-width: 1024px) { .booking { padding-block: var(--sp-9); } }
+.booking-title { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(2.25rem, 6.5vw, 4.25rem); line-height: 0.96; }
+.booking-subtitle { margin-top: var(--sp-2); color: rgba(18,13,10,0.7); }
+
+.booking-panel {
+  position: relative; margin: var(--sp-6) auto 0; max-width: 460px; background: var(--ink); color: var(--cream);
+  padding: var(--sp-6) var(--sp-5); border-radius: 16px; border: 2px solid var(--brick-deep);
+}
+.booking-panel-text { color: var(--cream-dim); font-size: 0.9375rem; margin-bottom: var(--sp-4); }
+.booking-prop-a { position: absolute; top: -28px; right: -18px; width: 64px; height: 64px; color: var(--cream); transform: rotate(18deg); }
+.booking-prop-b { position: absolute; bottom: -22px; left: -20px; width: 54px; height: 54px; color: var(--cream); transform: rotate(-20deg); opacity: 0.85; }
+
+/* ==========================================================================
+   UBICACIÓN
+   ========================================================================== */
+.location-inner { display: grid; grid-template-columns: 1fr; gap: var(--sp-6); }
+@media (min-width: 900px) { .location-inner { grid-template-columns: 1fr 1fr; align-items: center; } }
+.location-facts { margin: var(--sp-5) 0 var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3); }
+.location-fact { display: flex; flex-direction: column; gap: 4px; padding-top: var(--sp-3); border-top: 1px solid var(--line); }
+.location-fact dt { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber-bright); }
+.location-fact dd { color: var(--cream-dim); }
+.location-note { margin-top: var(--sp-3); font-size: 13px; color: var(--cream-faint); max-width: 40ch; }
+
+.location-map-panel {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--sp-3);
+  aspect-ratio: 4/3; border: 1.5px solid var(--amber-deep); border-radius: 14px; text-align: center;
+  padding: var(--sp-5); background: rgba(224,138,46,0.06);
+  transition: background 280ms var(--ease), border-color 280ms var(--ease), transform 280ms var(--ease);
+}
+.location-map-panel:hover, .location-map-panel:focus-visible { background: rgba(224,138,46,0.14); border-color: var(--amber); transform: translateY(-3px); }
+.location-map-icon { width: 44px; height: 44px; color: var(--amber-bright); }
+.location-map-title { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(1.5rem, 3.5vw, 2rem); line-height: 1.15; color: var(--cream); }
+.location-map-cta { font-size: 13px; letter-spacing: 0.06em; color: var(--amber-bright); text-transform: uppercase; }
+
+/* ==========================================================================
+   CONTACTO
+   ========================================================================== */
+.contact-grid { margin-top: var(--sp-6); display: grid; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .contact-grid { grid-template-columns: repeat(3, 1fr); } }
+.contact-block {
+  display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-6) var(--sp-4);
+  border-top: 2px solid var(--line-strong); transition: background 300ms var(--ease), color 300ms var(--ease);
+  min-height: 160px; justify-content: center; width: 100%; text-align: left; cursor: pointer;
+}
+.contact-block:last-child { border-bottom: 2px solid var(--line-strong); }
+@media (min-width: 900px) {
+  .contact-block { border-top: 2px solid var(--line-strong); border-left: 2px solid var(--line-strong); border-bottom: 2px solid var(--line-strong); padding: var(--sp-7) var(--sp-5); min-height: 260px; }
+  .contact-block:last-child { border-right: 2px solid var(--line-strong); }
+}
+.contact-block:hover, .contact-block:focus-visible { background: var(--amber); color: var(--ink); }
+.contact-block-q { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: var(--cream-faint); }
+.contact-block:hover .contact-block-q, .contact-block:focus-visible .contact-block-q { color: rgba(18,13,10,0.7); }
+.contact-block-a { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(1.5rem, 3.2vw, 2.125rem); line-height: 1.05; }
+.contact-block-cta { font-family: var(--font-mono); font-weight: 700; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--amber-bright); margin-top: var(--sp-2); }
+.contact-block:hover .contact-block-cta, .contact-block:focus-visible .contact-block-cta { color: var(--ink); }
+
+/* ==========================================================================
+   CLOSING STATEMENT — the reference's oversized "THANK YOU" moment
+   ========================================================================== */
+.closing { position: relative; padding-block: var(--sp-8); text-align: center; overflow: hidden; }
+.closing-text {
+  display: block; font-family: var(--font-display); text-transform: uppercase; color: var(--cream);
+  font-size: clamp(3.5rem, 14vw, 9.5rem); line-height: 0.9; letter-spacing: 0.005em;
+}
+
+/* ==========================================================================
+   FOOTER — three columns, matching the reference's Contact/Hours rhythm
+   ========================================================================== */
+.site-footer { border-top: 2px solid var(--line-strong); background: var(--brick-deep); }
+.footer-top { padding-top: var(--sp-6); display: flex; justify-content: center; }
+.footer-logo { height: 56px; width: auto; object-fit: contain; opacity: 0.92; }
+.footer-inner { display: grid; grid-template-columns: 1fr; gap: var(--sp-4); padding-block: var(--sp-6); text-align: center; }
+@media (min-width: 700px) { .footer-inner { grid-template-columns: repeat(3, 1fr); text-align: left; } }
+.footer-heading { font-size: 11px; letter-spacing: 0.1em; color: var(--amber-bright); margin-bottom: var(--sp-2); }
+.footer-text { color: var(--cream-dim); font-size: 0.9375rem; }
+.footer-bottom { border-top: 1px solid var(--line); padding-block: var(--sp-4); text-align: center; }
+.footer-legal { font-size: 12px; color: var(--cream-faint); }
+
+/* ==========================================================================
+   BOOKING MODAL — bottom sheet on mobile, centered panel on desktop.
+   Same dark/brick visual language, cream type, amber accent as the rest
+   of the site — deliberately not generic browser-form styling.
+   ========================================================================== */
+html.booking-open, html.booking-open body { overflow: hidden; height: 100%; }
+
+/* A [hidden] booking layer must be removed from layout/hit-testing.
+   Without this guard, .booking-modal { display:flex } overrides the browser's
+   hidden state, leaving an invisible 480px fixed panel centered on desktop. */
+.booking-modal[hidden],
+.booking-modal-backdrop[hidden] {
+  display: none !important;
+}
+
+.booking-modal-backdrop {
+  position: fixed; inset: 0; z-index: 300; background: rgba(10,7,5,0.72);
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+  opacity: 0; pointer-events: none; transition: opacity 280ms var(--ease);
+}
+.booking-modal-backdrop.is-open { opacity: 1; pointer-events: auto; }
+
+.booking-modal {
+  position: fixed; z-index: 301; left: 0; right: 0; bottom: 0;
+  max-width: 480px; margin-inline: auto; max-height: 88svh;
+  background: var(--ink); border: 1.5px solid var(--amber-deep); border-bottom: none;
+  border-radius: 20px 20px 0 0;
+  transform: translateY(100%); transition: transform 360ms var(--ease);
+  display: flex; flex-direction: column;
+}
+.booking-modal.is-open { transform: translateY(0); }
+@media (min-width: 700px) {
+  .booking-modal {
+    left: 50%; right: auto; bottom: auto; top: 50%; width: 92vw;
+    border-radius: 18px; border-bottom: 1.5px solid var(--amber-deep);
+    transform: translate(-50%, -46%); opacity: 0; transition: transform 360ms var(--ease), opacity 280ms var(--ease);
+  }
+  .booking-modal.is-open { transform: translate(-50%, -50%); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .booking-modal, .booking-modal-backdrop { transition: opacity 150ms linear; }
+  .booking-modal { transform: translateY(0); }
+  @media (min-width: 700px) { .booking-modal { transform: translate(-50%, -50%); } }
+}
+
+.booking-modal-panel { display: flex; flex-direction: column; min-height: 0; padding: var(--sp-5) var(--sp-4) var(--sp-4); overflow: hidden; }
+@media (min-width: 700px) { .booking-modal-panel { padding: var(--sp-6); } }
+
+.booking-modal-head { display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+.booking-modal-step-label { font-size: 11px; letter-spacing: 0.1em; color: var(--amber-bright); }
+.booking-modal-close { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: var(--cream-dim); flex-shrink: 0; transition: color 200ms var(--ease); }
+.booking-modal-close:hover, .booking-modal-close:focus-visible { color: var(--cream); }
+
+.booking-modal-title { font-family: var(--font-display); text-transform: uppercase; font-size: 1.75rem; margin-top: var(--sp-2); flex-shrink: 0; }
+.booking-modal-body { flex: 1; overflow-y: auto; margin-top: var(--sp-4); min-height: 120px; }
+.booking-step-heading { font-size: 0.9375rem; color: var(--cream-dim); margin-bottom: var(--sp-3); display: block; }
+
+.booking-option-list { display: flex; flex-direction: column; gap: var(--sp-2); }
+.booking-option-list--time { flex-direction: row; flex-wrap: wrap; }
+.booking-option {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3);
+  padding: 14px 16px; border: 1.5px solid var(--line-strong); border-radius: 10px; background: none; color: var(--cream);
+  font-family: var(--font-body); font-size: 0.9375rem; text-align: left; cursor: pointer; width: 100%;
+  transition: border-color 200ms var(--ease), background 200ms var(--ease);
+}
+.booking-option-list--time .booking-option { flex: 0 0 auto; width: auto; padding: 10px 16px; font-family: var(--font-mono); font-size: 13px; }
+.booking-option:hover { border-color: var(--amber-deep); }
+.booking-option[aria-checked="true"] { border-color: var(--amber); background: rgba(224,138,46,0.14); }
+.booking-option-name { font-weight: 600; }
+.booking-option-meta { font-size: 12px; color: var(--cream-faint); font-family: var(--font-mono); white-space: nowrap; }
+
+.booking-date-input, .booking-name-input {
+  width: 100%; padding: 14px 16px; border: 1.5px solid var(--line-strong); border-radius: 10px;
+  background: var(--brick-deep); color: var(--cream); font-family: var(--font-body); font-size: 1rem; color-scheme: dark;
+}
+.booking-date-input:focus, .booking-name-input:focus { border-color: var(--amber); outline: none; }
+
+.booking-summary { display: flex; flex-direction: column; gap: var(--sp-3); }
+.booking-summary-row { display: flex; justify-content: space-between; gap: var(--sp-3); padding-bottom: var(--sp-2); border-bottom: 1px solid var(--line); }
+.booking-summary-row dt { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber-bright); flex-shrink: 0; }
+.booking-summary-row dd { font-weight: 600; text-align: right; }
+
+.booking-modal-note { font-size: 12px; color: var(--cream-faint); margin-top: var(--sp-3); }
+.booking-modal-error { color: #FF9A8B; font-size: 13px; margin-top: var(--sp-3); flex-shrink: 0; }
+
+.booking-modal-actions { display: flex; gap: var(--sp-3); margin-top: var(--sp-4); flex-shrink: 0; }
+.booking-modal-back { flex: 0 0 auto; background: none; border: 1.5px solid var(--line-strong); color: var(--cream-dim); }
+.booking-modal-back:hover { border-color: var(--cream-dim); color: var(--cream); }
+.booking-modal-next { flex: 1; }
+.booking-modal-next:disabled { opacity: 0.5; cursor: default; }
